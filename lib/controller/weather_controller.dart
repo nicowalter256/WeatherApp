@@ -7,6 +7,25 @@ class WeatherController extends ChangeNotifier {
   dynamic exception;
   Weather? weather;
 
+  List<Weather> weatherForeCasts = [];
+
+  void fetchWeatherForeCasts() async {
+    if (loading == false) {
+      loading = true;
+      notifyListeners();
+    }
+    try {
+      weatherForeCasts = [];
+      List<Weather> results = await WeatherRepository.getWeatherForecast();
+      weatherForeCasts.addAll(results);
+    } catch (e) {
+      exception = e;
+    }
+
+    loading = false;
+    notifyListeners();
+  }
+
   void fetchWeatherInfo() async {
     if (loading == false) {
       loading = true;
