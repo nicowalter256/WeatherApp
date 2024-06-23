@@ -1,7 +1,7 @@
 import 'package:weather_app/constants/weather_exports.dart';
 
 class WeatherRepository {
-  static Future<List<Weather>> getWeatherInfo() async {
+  static Future<Weather> getWeatherInfo() async {
     BaseOptions baseOptions = BaseOptions(
       baseUrl: Constants.baseUrl,
       method: 'GET',
@@ -17,13 +17,10 @@ class WeatherRepository {
         'appid': Constants.apiKey
       });
 
-      List<Weather> weatherInfos = [];
-      for (Map<String, dynamic> weatherInfo in response.data) {
-        weatherInfos.add(Weather.fromJson(weatherInfo));
-      }
-
-      return weatherInfos;
-    } catch (__) {
+      return Weather.fromJson(response.data);
+    } catch (e,s) {
+      print("akkakakaakka: $e");
+      print("akkakakaakka: $s");
       rethrow;
     }
   }

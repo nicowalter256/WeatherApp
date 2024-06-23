@@ -5,7 +5,7 @@ import 'package:weather_app/repository/weather_repository.dart';
 class WeatherController extends ChangeNotifier {
   bool loading = false;
   dynamic exception;
-  List<Weather> weatherInfo = [];
+  Weather? weather;
 
   void fetchWeatherInfo() async {
     if (loading == false) {
@@ -13,9 +13,10 @@ class WeatherController extends ChangeNotifier {
       notifyListeners();
     }
     try {
-      weatherInfo = [];
-      List<Weather> results = await WeatherRepository.getWeatherInfo();
-      weatherInfo.addAll(results);
+      List<dynamic> results = await Future.wait([
+        WeatherRepository.getWeatherInfo(),
+      ], eagerError: true);
+      weather = results[0];
     } catch (e) {
       exception = e;
     }
