@@ -3,7 +3,6 @@
 A new Flutter project.
 
 
-<!-- https://dribbble.com/shots/24151945-Weather-App-Design -->
 
 
 A few resources to get you started if this is your first Flutter project:
