@@ -2,7 +2,6 @@
 
 A new Flutter project.
 
-## Getting Started
 
 <!-- https://dribbble.com/shots/24151945-Weather-App-Design -->
 
